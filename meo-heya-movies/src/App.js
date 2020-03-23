@@ -5,42 +5,48 @@ import {
   Link,
   Switch
 } from "react-router-dom"
-
-import Kingdom from './pages/Kingdom';
-import SpiritedAway from './pages/SpiritedAway';
-import PrincessMononoke from './pages/PrincessMononoke';
-import FightClub from './pages/FightClub';
-import That70sShow from './pages/That70sShow';
+import movieshows from './store/movieshows'
+import Film from './Film.js'
 import NotFound from './pages/NotFound';
 import './App.css';
 
 
 
-const App = () => {
+class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      films: movieshows
+    }
+
+  }
+  render() {
   return(
     <Router>
       <h1>Heya and Meo's Favorite Movies/Shows</h1>
       <ul>
-        <li><Link to="/kingdom/">Kingdom</Link></li>
-        <li><Link to="/spiritedaway/">Spirited Away</Link></li>
-        <li><Link to="/princessmononoke/">Princess Mononoke</Link></li>
-        <li><Link to="/fightclub/">Fight Club</Link></li>
-        <li><Link to="/that70sshow/">That 70s Show</Link></li>
+      { this.state.films.map((film, index) =>
+                <li key={ index }>
+                  <Link to={ `/films/${film.id}` }>
+                    { film.name }
+                  </Link>
+                </li>        
+      )}
       </ul>
 
       <br/>
       <p>
       </p>
       <Switch>
-        <Route path="/kingdom/" component={ Kingdom } />
-        <Route path="/spiritedaway/" component={ SpiritedAway } />
-        <Route path="/princessmononoke/" component={ PrincessMononoke } />
-        <Route path="/fightclub/" component={ FightClub } />
-        <Route path="/that70sshow/" component={ That70sShow } />
+        <Route
+          path="/films/:id"
+          render={ (props) => <Film {...props} films={ this.state.films } /> }
+          />
         <Route component={ NotFound } />
       </Switch>
     </Router>
   )
+  }
 }
 
 export default App;
