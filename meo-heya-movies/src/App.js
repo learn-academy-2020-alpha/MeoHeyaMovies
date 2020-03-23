@@ -25,13 +25,13 @@ class App extends Component {
     <Router>
       <h1>Heya and Meo's Favorite Movies/Shows</h1>
       <ul>
-      { this.state.films.map((film, index) =>
-                <li key={ index }>
-                  <Link to={ `/films/${film.id}` }>
-                    { film.name }
-                  </Link>
-                </li>        
-      )}
+        { this.state.films.map((film, index) =>
+          <li key={ index }>
+            <Link to={ `/films/${film.id}` }>
+              { film.name }
+            </Link>
+          </li>
+        )}
       </ul>
 
       <br/>
