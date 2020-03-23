@@ -11,6 +11,7 @@ import SpiritedAway from './pages/SpiritedAway';
 import PrincessMononoke from './pages/PrincessMononoke';
 import FightClub from './pages/FightClub';
 import That70sShow from './pages/That70sShow';
+import NotFound from './pages/NotFound';
 import './App.css';
 
 
@@ -36,6 +37,7 @@ const App = () => {
         <Route path="/princessmononoke/" component={ PrincessMononoke } />
         <Route path="/fightclub/" component={ FightClub } />
         <Route path="/that70sshow/" component={ That70sShow } />
+        <Route component={ NotFound } />
       </Switch>
     </Router>
   )
